@@ -1,0 +1,25 @@
+{
+  "name": "yyl-replacer",
+  "version": "0.1.0",
+  "description": "replace lib",
+  "main": "lib/replacer.js",
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "scripts": {
+    "test": "jest ./test/ --env=node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackness1208/yyl-replacer.git"
+  },
+  "author": "jackness",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackness1208/yyl-replacer/issues"
+  },
+  "homepage": "https://github.com/jackness1208/yyl-replacer#readme",
+  "devDependencies": {
+    "jest": "^24.1.0"
+  }
+}
