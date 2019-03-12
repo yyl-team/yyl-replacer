@@ -20,6 +20,18 @@ if (TEST_CTRL.DATA_RENDER) {
     }, {
       argu: ['now is a __data(\'status\') day.', { status: 'good' }],
       result: 'now is a good day.'
+    }, {
+      argu: ['now is a __data("first._sub") day.', { first: { _sub: 'good' } }],
+      result: 'now is a good day.'
+    }, {
+      argu: ['now is a __data("first._sub") day.', { first: 'good' }],
+      result: 'now is a  day.'
+    }, {
+      argu: ['now is a __data("first._sub") day.', { zz: 'good' }],
+      result: 'now is a  day.'
+    }, {
+      argu: ['now is a __data("a") day.', { zz: 'good' }],
+      result: 'now is a  day.'
     }];
 
     tests.forEach((item) => {
