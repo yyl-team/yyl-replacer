@@ -1,12 +1,12 @@
-interface IReg {
+interface Reg {
   SUGAR_DATA: RegExp
 }
 
-interface IReplacer {
-  REG: IReg,
+interface Replacer {
+  REG: Reg,
   dataRender(cnt: string, data: {[key: string]: string}): string
 }
 
-declare const replacer: IReplacer
+declare const replacer: Replacer
 
 export=replacer

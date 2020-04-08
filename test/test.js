@@ -1,41 +1,52 @@
-const rp = require('../lib/replacer.js');
+const { dataRender } = require('../')
 const TEST_CTRL = {
-  DATA_RENDER: true
-};
+  DATA_RENDER: true,
+}
 
 if (TEST_CTRL.DATA_RENDER) {
-  it('rp.dataRender(cnt, data)', () => {
-    const tests = [{
-      argu: ['now is a __data("status") day.', { status: 'good' }],
-      result: 'now is a good day.'
-    }, {
-      argu: ['now is a __data("status") day.', { status: 1 }],
-      result: 'now is a 1 day.'
-    }, {
-      argu: ['now is a __data("status") day.', { status: true }],
-      result: 'now is a true day.'
-    }, {
-      argu: ['now is a __data("status")__data("status") day.', { status: 'good' }],
-      result: 'now is a goodgood day.'
-    }, {
-      argu: ['now is a __data(\'status\') day.', { status: 'good' }],
-      result: 'now is a good day.'
-    }, {
-      argu: ['now is a __data("first._sub") day.', { first: { _sub: 'good' } }],
-      result: 'now is a good day.'
-    }, {
-      argu: ['now is a __data("first._sub") day.', { first: 'good' }],
-      result: 'now is a  day.'
-    }, {
-      argu: ['now is a __data("first._sub") day.', { zz: 'good' }],
-      result: 'now is a  day.'
-    }, {
-      argu: ['now is a __data("a") day.', { zz: 'good' }],
-      result: 'now is a  day.'
-    }];
+  it('dataRender(cnt, data)', () => {
+    expect(
+      dataRender('now is a __data("status") day.', { status: 'good' })
+    ).toEqual('now is a good day.')
 
-    tests.forEach((item) => {
-      expect(rp.dataRender(...item.argu)).toEqual(item.result);
-    });
-  });
+    expect(dataRender('now is a __data("status") day.', { status: 1 })).toEqual(
+      'now is a 1 day.'
+    )
+
+    expect(
+      dataRender('now is a __data("status") day.', { status: true })
+    ).toEqual('now is a true day.')
+
+    expect(
+      dataRender('now is a __data("status") day.', { status: false })
+    ).toEqual('now is a false day.')
+
+    expect(
+      dataRender('now is a __data("status")__data("status") day.', {
+        status: 'good',
+      })
+    ).toEqual('now is a goodgood day.')
+
+    expect(
+      dataRender("now is a __data('status') day.", { status: 'good' })
+    ).toEqual('now is a good day.')
+
+    expect(
+      dataRender('now is a __data("first._sub") day.', {
+        first: { _sub: 'good' },
+      })
+    ).toEqual('now is a good day.')
+
+    expect(
+      dataRender('now is a __data("first._sub") day.', { first: 'good' })
+    ).toEqual('now is a  day.')
+
+    expect(
+      dataRender('now is a __data("first._sub") day.', { zz: 'good' })
+    ).toEqual('now is a  day.')
+
+    expect(dataRender('now is a __data("a") day.', { zz: 'good' })).toEqual(
+      'now is a  day.'
+    )
+  })
 }
